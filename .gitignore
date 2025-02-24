@@ -1,0 +1,6 @@
+.vs
+.vscode
+benchmark
+googletest
+build
+*.json
