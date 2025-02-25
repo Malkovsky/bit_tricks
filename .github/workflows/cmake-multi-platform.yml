@@ -33,7 +33,7 @@ jobs:
         exclude:
           #   excluding for now
           - os: ubuntu-latest
-              c_compiler: clang
+            c_compiler: clang
             cpp_compiler: clang++
           #   excluding for now
           - os: windows-latest
