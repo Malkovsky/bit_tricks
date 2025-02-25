@@ -27,15 +27,17 @@ jobs:
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
+          #   excluding for now
+          # - os: windows-latest
+          #   c_compiler: cl
+          #   cpp_compiler: cl
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
+          #   excluding for now
+          # - os: ubuntu-latest
+          #   c_compiler: clang
+          #   cpp_compiler: clang++
         exclude:
           - os: windows-latest
             c_compiler: gcc
@@ -53,6 +55,11 @@ jobs:
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -76,3 +83,15 @@ jobs:
     - name: Benchmarks
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }} -R Benchmarks -VV
+
+    - name: Generate readme report
+      run: |
+        python generate_markdown_tables.py
+    
+    - name: Commit changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add README.md
+        git commit -m "Updated README with CSV table"
+        git push
