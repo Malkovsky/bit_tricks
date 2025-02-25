@@ -24,6 +24,11 @@ set_property(TARGET bt_benchmarks PROPERTY CXX_STANDARD 20)
 target_link_libraries(bt_benchmarks
     benchmark
     benchmark_main)
+enable_testing()
+add_test(
+    NAME Benchmarks
+    COMMAND bt_benchmarks --benchmark_out=bm_report.csv --benchmark_out_format=csv
+)
 
 add_executable(bt_unittests
     src/unittests.cpp)
@@ -35,3 +40,7 @@ set_property(TARGET bt_unittests PROPERTY CXX_STANDARD 20)
 target_link_libraries(bt_unittests
     gtest
     gtest_main)
+add_test(
+    NAME Unittests
+    COMMAND bt_unittests
+)
