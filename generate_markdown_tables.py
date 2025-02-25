@@ -50,7 +50,7 @@ def main():
             print("|Benchmark|Time|CPU Time|Iters|", file=f)
             print("|:--------|---:|-------:|----:|", file=f)
             for item in group:
-                print(f"|{item[0]}|{item[1]} {item[3]}|{item[2]} {item[3]}|{item[4]}|", file=f)
+                print(f"|{item[0]}|{float(item[1]):.2f} {item[3]}|{float(item[2]):.2f} {item[3]}|{item[4]}|", file=f)
 
 
 if __name__ == "__main__":
