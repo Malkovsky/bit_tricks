@@ -37,6 +37,8 @@ All32Uints(_count_bits_set_naive);
 All32Uints(_count_bits_set_iterate_set_bits);
 All32Uints(_count_bits_set_parallel);
 All32Uints(_count_bits_set_lookup);
+All32Uints(__builtin_popcount);
+
 
 All32Uints(_reverse_naive);
 All32Uints(_reverse_parallel);
@@ -51,6 +53,7 @@ All32Uints(_least_significant_bit_via_float);
 All32Uints(_least_significant_bit_lookup);
 All32Uints(_least_significant_bit_mod_lookup);
 All32Uints(_least_significant_bit_de_bruijn);
+All32Uints(__builtin_ctz);
 
 All32SingleBitSet(_least_significant_bit_naive);
 All32SingleBitSet(_least_significant_bit_binary_search);
@@ -58,6 +61,8 @@ All32SingleBitSet(_least_significant_bit_via_float);
 All32SingleBitSet(_least_significant_bit_lookup);
 All32SingleBitSet(_least_significant_bit_mod_lookup);
 All32SingleBitSet(_least_significant_bit_de_bruijn);
+All32SingleBitSet(__builtin_ctz);
+
 
 All24UintsIteratePosition(_mod_by_power_of_two_minus_one_naive);
 All24UintsIteratePosition(_mod_by_power_of_two_minus_one_no_division_v1);
@@ -79,6 +84,9 @@ BENCHMARK(BM_count_bits_set_parallel)
     ->Unit(benchmark::kMillisecond);
 BENCHMARK(BM_count_bits_set_lookup)
     ->Name("All 32-bit uint/Count bits set with lookup table")
+    ->Unit(benchmark::kMillisecond);
+BENCHMARK(BM__builtin_popcount)
+    ->Name("All 32-bit uint/Count bits set with builtin")
     ->Unit(benchmark::kMillisecond);
 
 /**
@@ -129,6 +137,9 @@ BENCHMARK(BM_least_significant_bit_mod_lookup)
 BENCHMARK(BM_least_significant_bit_de_bruijn)
     ->Name("All 32-bit uint/LSB De Bruijn")
     ->Unit(benchmark::kMillisecond);
+BENCHMARK(BM__builtin_ctz)
+    ->Name("All 32-bit uint/LSB builtin ctz")
+    ->Unit(benchmark::kMillisecond);
 
 BENCHMARK(BM_SB_least_significant_bit_naive)
     ->Name("All 32-bit single bit uint/LSB naive");
@@ -142,6 +153,8 @@ BENCHMARK(BM_SB_least_significant_bit_mod_lookup)
     ->Name("All 32-bit single bituint/LSB mod lookup");
 BENCHMARK(BM_SB_least_significant_bit_de_bruijn)
     ->Name("All 32-bit single bituint/LSB De Bruijn");
+BENCHMARK(BM_SB_least_significant_bit_de_bruijn)
+    ->Name("All 32-bit single bituint/LSB builtin ctz");
 
   
 /**

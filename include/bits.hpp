@@ -11,19 +11,18 @@
 #include "iso646.h"
 #endif
 
-#include <iostream>
-
 namespace bits {
 
-void print_binary32(uint32_t x) {
-  for (int i = 31; i >= 0; --i) {
-    std::cout << (x & (1 << i) ? 1 : 0);
-    if (i % 8 == 0) {
-      std::cout << " ";
-    }
-  }
-  std::cout << std::endl;
-}
+// For debug purposes
+// void print_binary32(uint32_t x) {
+//   for (int i = 31; i >= 0; --i) {
+//     std::cout << (x & (1 << i) ? 1 : 0);
+//     if (i % 8 == 0) {
+//       std::cout << " ";
+//     }
+//   }
+//   std::cout << std::endl;
+// }
 
 /**
  * Alternatively can be initialized as
