@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <cstddef>
 
 #ifdef __BMI2__
 #include <immintrin.h>
